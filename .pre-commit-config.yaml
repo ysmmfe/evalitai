@@ -8,9 +8,11 @@ repos:
       - id: ruff-format
         files: ^apps/api/
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.0
+  - repo: local
     hooks:
       - id: mypy
-        files: ^apps/api/
-        args: [--ignore-missing-imports]
+        name: mypy
+        entry: bash -c 'cd apps/api && uv run mypy . --config-file=pyproject.toml'
+        language: system
+        files: ^apps/api/.*\.py$
+        pass_filenames: false

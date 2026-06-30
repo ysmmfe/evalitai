@@ -21,8 +21,16 @@ Think of it as unit tests + snapshot tests for AI, with a dashboard.
 ```bash
 git clone https://github.com/ysmmfe/evalitai.git
 cd evalitai
-cp infra/.env.example .env   # add your LLM provider key
+cp infra/.env.example .env        # add your LLM provider key
 docker compose -f infra/docker-compose.yml up
+```
+
+Run database migrations:
+
+```bash
+cd apps/api
+uv sync
+uv run alembic upgrade head
 ```
 
 Open `http://localhost:3000`.
